@@ -16,7 +16,7 @@ const vehicleDisplayAfterRead: FieldHook = async ({ data }) => {
 
 const displayFieldAfterRead = (field: string): FieldHook => {
   return ({ siblingData }) => {
-    return siblingData["field"];
+    return siblingData[field];
   };
 };
 
