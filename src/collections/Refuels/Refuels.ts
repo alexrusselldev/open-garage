@@ -2,6 +2,7 @@ import payload from "payload";
 import { CollectionConfig, Condition } from "payload/types";
 import { collectionBeforeChange } from "./hooks/collectionHooks";
 import {
+  validateMileage,
   clearFieldBeforeChange,
   displayFieldAfterRead,
   displayTitleAfterRead,
@@ -79,6 +80,7 @@ const Refuels: CollectionConfig = {
           admin: {
             condition: isNotReadOnly,
           },
+          validate: validateMileage,
           required: true,
         },
         {
