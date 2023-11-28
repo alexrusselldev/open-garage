@@ -20,7 +20,7 @@ const vehicleTotalsEndpoint: Omit<Endpoint, "root"> = {
     ]);
 
     if (mongoRes.length == 0) {
-      res.status(200).send({ totalCost: 0 });
+      res.status(200).send({ totalCost: 0, totalCapacity: 0 });
       return;
     }
     console.log(mongoRes);
