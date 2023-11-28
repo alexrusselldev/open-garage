@@ -1,5 +1,6 @@
 import { CollectionConfig } from "payload/types";
 import collectionBeforeChange from "./hooks/collectionBeforeChange";
+import totalCostEndpoint from "./endpoints/totalCostEndpoint";
 
 const Vehicles: CollectionConfig = {
   slug: "vehicles",
@@ -31,6 +32,7 @@ const Vehicles: CollectionConfig = {
       relationTo: "media",
     },
   ],
+  endpoints: [totalCostEndpoint],
 };
 
 export default Vehicles;
