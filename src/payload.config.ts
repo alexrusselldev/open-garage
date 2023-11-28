@@ -11,10 +11,27 @@ import Vehicles from "./collections/Vehicles/Vehicles";
 import Media from "./collections/Media";
 import Refuels from "./collections/Refuels/Refuels";
 
+import "../tailwind.css";
+
 export default buildConfig({
   admin: {
     user: Users.slug,
     bundler: webpackBundler(),
+    webpack: (config) => {
+      return {
+        ...config,
+        module: {
+          ...config.module,
+          rules: [
+            ...config.module.rules,
+            {
+              test: /\tailwind.css$/i,
+              use: ["css-loader", "postcss-loader"],
+            },
+          ],
+        },
+      };
+    },
   },
   editor: slateEditor({}),
   collections: [Users, Vehicles, Media, Refuels],
