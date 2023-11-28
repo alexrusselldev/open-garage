@@ -1,7 +1,7 @@
 import payload from "payload";
 import { CollectionConfig } from "payload/types";
-import collectionBeforeChange from "./hooks/collectionBeforeChange";
-import vehicleDisplayAfterRead from "./hooks/vehicleDisplayAfterRead";
+import { collectionBeforeChange } from "./hooks/collectionHooks";
+import { vehicleDisplayAfterRead } from "./hooks/fieldHooks";
 
 const Refuels: CollectionConfig = {
   slug: "refuels",

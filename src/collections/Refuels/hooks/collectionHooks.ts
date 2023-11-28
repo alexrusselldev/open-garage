@@ -7,4 +7,4 @@ const collectionBeforeChange: CollectionBeforeChangeHook = async ({ data }) => {
   };
 };
 
-export default collectionBeforeChange;
+export { collectionBeforeChange };
