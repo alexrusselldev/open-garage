@@ -46,6 +46,28 @@ const Refuels: CollectionConfig = {
       },
     },
 
+    // full tank field
+    {
+      name: "full",
+      type: "checkbox",
+      admin: {
+        condition: isNotReadOnly,
+      },
+    },
+    {
+      name: "fullDisplay",
+      label: "Full",
+      type: "checkbox",
+      admin: {
+        readOnly: true,
+        condition: isReadOnly,
+      },
+      hooks: {
+        beforeChange: [clearFieldBeforeChange("fullDisplay")],
+        afterRead: [displayFieldAfterRead("full")],
+      },
+    },
+
     // vehicle relationship fields
     {
       name: "vehicle",
