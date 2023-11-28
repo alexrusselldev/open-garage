@@ -1,7 +1,7 @@
 import { CollectionConfig } from "payload/types";
 import collectionBeforeChange from "./hooks/collectionBeforeChange";
 import vehicleTotalsEndpoint from "./endpoints/vehicleTotalsEndpoint";
-import VehicleStatsField from "./fields/vehicleStats";
+import VehicleStatsField from "./fields/VehicleStatsField";
 
 const Vehicles: CollectionConfig = {
   slug: "vehicles",

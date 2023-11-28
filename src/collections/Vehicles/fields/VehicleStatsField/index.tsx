@@ -13,32 +13,20 @@ const VehicleStatsField: React.FC<Props> = ({ path }) => {
   const [firstRefuel, setFirstRefuel] = useState<IRefuelsResponse>();
   const { id } = useDocumentInfo();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const totals = await fetch(
-        `http://localhost:3000/api/vehicles/${id}/totals`
-      );
-      setTotals(await totals.json());
-
-      const refuels = await fetch(
-        `http://localhost:3000/api/refuels?where[vehicle][equals]=${id}&sort=-createdAt&limit=3`
-      );
-
-      setRefuels(await refuels.json());
-
-      const firstRefuel = await fetch(
-        `http://localhost:3000/api/refuels?where[vehicle][equals]=${id}&sort=createdAt&limit=1`
-      );
-
-      setFirstRefuel(await firstRefuel.json());
-    };
-
-    fetchData();
-  }, []);
   const currencyFormatter = new Intl.NumberFormat("en-UK", {
     style: "currency",
     currency: "GBP",
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setTotals(await getTotals(id));
+      setRefuels(await getRefuels(id));
+      setFirstRefuel(await getFirstRefuel(id));
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="grid grid-cols-10 p-8 md:p-0 gap-8">
