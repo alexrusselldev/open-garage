@@ -1,7 +1,7 @@
 import { Endpoint } from "payload/config";
 
 const totalCostEndpoint: Omit<Endpoint, "root"> = {
-  path: "/:id/totalcost",
+  path: "/:id/totalCost",
   method: "get",
   handler: async (req, res, next) => {
     const mongoRes = await req.payload.db.collections["refuels"].aggregate([
