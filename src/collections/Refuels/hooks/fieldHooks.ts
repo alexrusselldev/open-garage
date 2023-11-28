@@ -20,4 +20,28 @@ const displayFieldAfterRead = (field: string): FieldHook => {
   };
 };
 
-export { vehicleDisplayAfterRead, displayFieldAfterRead };
+const displayTitleAfterRead: FieldHook = async ({ data }) => {
+  const vehicle = await payload
+    .findByID({
+      collection: "vehicles",
+      id: data.vehicle,
+    })
+    .catch((e) => {
+      return { nickname: "Unknown Vehicle" };
+    });
+
+  return `${vehicle.nickname} - ${data.createdAt.split("T")[0]}`;
+};
+
+const clearFieldBeforeChange = (field: string): FieldHook => {
+  return ({ siblingData }) => {
+    delete siblingData[field];
+  };
+};
+
+export {
+  vehicleDisplayAfterRead,
+  displayFieldAfterRead,
+  displayTitleAfterRead,
+  clearFieldBeforeChange,
+};

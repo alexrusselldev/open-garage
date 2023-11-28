@@ -2,7 +2,9 @@ import payload from "payload";
 import { CollectionConfig, Condition } from "payload/types";
 import { collectionBeforeChange } from "./hooks/collectionHooks";
 import {
+  clearFieldBeforeChange,
   displayFieldAfterRead,
+  displayTitleAfterRead,
   vehicleDisplayAfterRead,
 } from "./hooks/fieldHooks";
 
@@ -25,6 +27,19 @@ const Refuels: CollectionConfig = {
       type: "checkbox",
       admin: { hidden: true },
       defaultValue: false,
+    },
+
+    // virtual field for generating display title
+    {
+      name: "fullTitle",
+      type: "text",
+      admin: {
+        hidden: true,
+      },
+      hooks: {
+        beforeChange: [clearFieldBeforeChange("fullTitle")],
+        afterRead: [displayTitleAfterRead],
+      },
     },
 
     // vehicle relationship fields
