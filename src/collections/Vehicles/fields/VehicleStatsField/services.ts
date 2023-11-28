@@ -19,3 +19,5 @@ const getFirstRefuel = async (id) => {
 
   return await firstRefuel.json();
 };
+
+export { getTotals, getRefuels, getFirstRefuel };

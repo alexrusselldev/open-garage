@@ -2,12 +2,13 @@ import { useDocumentInfo } from "payload/dist/admin/components/utilities/Documen
 import { Refuel } from "payload/generated-types";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { getFirstRefuel, getRefuels, getTotals } from "./services";
 
-type Props = { path: string };
+type IProps = { path: string };
 interface IRefuelsResponse {
   docs: Refuel[];
 }
-const VehicleStatsField: React.FC<Props> = ({ path }) => {
+const VehicleStatsField: React.FC<IProps> = ({ path }) => {
   const [totals, setTotals] = useState<Record<string, any>>();
   const [refuels, setRefuels] = useState<IRefuelsResponse>();
   const [firstRefuel, setFirstRefuel] = useState<IRefuelsResponse>();
