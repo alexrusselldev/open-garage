@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { getFirstRefuel, getRefuels, getTotals } from "./services";
 import StatsWidget from "./components/StatsWidget";
+import RefuelRow from "./components/RefuelRow";
 
 type IProps = { path: string };
 interface IRefuelsResponse {
@@ -68,20 +69,12 @@ const VehicleStatsField: React.FC<IProps> = ({ path }) => {
           {refuels?.docs?.length != undefined && refuels?.docs?.length > 0 ? (
             refuels.docs.map((refuel: Refuel) => {
               return (
-                <a
-                  href={`/admin/collections/refuels/${refuel.id}`}
-                  className="no-underline"
-                >
-                  <div className="grid grid-cols-3 w-full hover:bg-[#212121]">
-                    <p className="m-0 p-2 h-fit">{refuel.capacity}</p>
-                    <p className="m-0 p-2">
-                      {currencyFormatter.format(refuel.cost)}
-                    </p>
-                    <p className="m-0 p-2">
-                      {refuel.full ? "Full" : "Not Full"}
-                    </p>
-                  </div>
-                </a>
+                <RefuelRow
+                  capacity={refuel.capacity}
+                  cost={currencyFormatter.format(refuel.cost)}
+                  full={refuel.full}
+                  id={refuel.id}
+                />
               );
             })
           ) : (
