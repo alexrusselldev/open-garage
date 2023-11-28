@@ -47,7 +47,7 @@ const VehicleStatsField: React.FC<Props> = ({ path }) => {
         <div className="flex flex-col w-full items-center sm:grid sm:grid-cols-2 md:grid-cols-3">
           <div className="flex flex-col items-center sm:items-start">
             <p className="font-bold text-4xl mb-0">{totals?.totalCapacity}</p>
-            <p>Fuel (Liters)</p>
+            <p>Volume (Liters)</p>
           </div>
           <div className="flex flex-col items-center sm:items-start">
             <p className="font-bold text-4xl mb-0">
@@ -73,8 +73,12 @@ const VehicleStatsField: React.FC<Props> = ({ path }) => {
       <div className="flex flex-col itemc-center sm:items-start col-span-10 sm:col-span-5 p-8 bg-[#181818]">
         <h2 className="text-3xl ">Recent Refuels</h2>
         <div className="w-full">
-          {refuels?.docs?.length != undefined &&
-            refuels?.docs?.length > 0 &&
+          <div className="grid grid-cols-3 w-full text-lg">
+            <p className="m-0 p-2 h-fit">Volume (Liters)</p>
+            <p className="m-0 p-2">Fuel Cost</p>
+            <p className="m-0 p-2">Full Tank</p>
+          </div>
+          {refuels?.docs?.length != undefined && refuels?.docs?.length > 0 ? (
             refuels.docs.map((refuel: Refuel) => {
               return (
                 <a
@@ -92,7 +96,12 @@ const VehicleStatsField: React.FC<Props> = ({ path }) => {
                   </div>
                 </a>
               );
-            })}
+            })
+          ) : (
+            <div className="mt-8 text-xl text-gray-400 text-center">
+              No refuels were found.
+            </div>
+          )}
         </div>
       </div>
     </div>
