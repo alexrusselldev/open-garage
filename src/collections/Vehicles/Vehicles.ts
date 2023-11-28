@@ -1,5 +1,7 @@
 import { CollectionConfig } from "payload/types";
 import collectionBeforeChange from "./hooks/collectionBeforeChange";
+import vehicleTotalsEndpoint from "./endpoints/vehicleTotalsEndpoint";
+import VehicleStatsField from "./fields/VehicleStatsField";
 
 const Vehicles: CollectionConfig = {
   slug: "vehicles",
@@ -11,26 +13,52 @@ const Vehicles: CollectionConfig = {
   },
   fields: [
     {
-      name: "registration",
-      type: "text",
-      required: true,
-      admin: {
-        placeholder: "Vehicle Registration",
-      },
-    },
-    {
-      name: "nickname",
-      type: "text",
-      admin: {
-        placeholder: "Vehicle Nickname",
-      },
-    },
-    {
-      name: "image",
-      type: "upload",
-      relationTo: "media",
+      type: "tabs",
+
+      tabs: [
+        {
+          label: "Statistics",
+          fields: [
+            {
+              name: "vehicleStats",
+              type: "ui",
+              admin: {
+                components: {
+                  Field: VehicleStatsField,
+                },
+              },
+            },
+          ],
+        },
+        {
+          label: "Settings",
+          fields: [
+            {
+              name: "registration",
+              type: "text",
+              required: true,
+              admin: {
+                placeholder: "Vehicle Registration",
+              },
+            },
+            {
+              name: "nickname",
+              type: "text",
+              admin: {
+                placeholder: "Vehicle Nickname",
+              },
+            },
+            {
+              name: "image",
+              type: "upload",
+              relationTo: "media",
+            },
+          ],
+        },
+      ],
     },
   ],
+  endpoints: [vehicleTotalsEndpoint],
 };
 
 export default Vehicles;
