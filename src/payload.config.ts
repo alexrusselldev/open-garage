@@ -9,6 +9,7 @@ import { buildConfig } from "payload/config";
 import Users from "./collections/Users";
 import Vehicles from "./collections/Vehicles/Vehicles";
 import Media from "./collections/Media";
+import Refuels from "./collections/Refuels/Refuels";
 
 export default buildConfig({
   admin: {
@@ -16,7 +17,7 @@ export default buildConfig({
     bundler: webpackBundler(),
   },
   editor: slateEditor({}),
-  collections: [Users, Vehicles, Media],
+  collections: [Users, Vehicles, Media, Refuels],
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),
   },
