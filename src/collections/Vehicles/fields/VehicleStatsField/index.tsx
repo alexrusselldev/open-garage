@@ -3,6 +3,7 @@ import { Refuel } from "payload/generated-types";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { getFirstRefuel, getRefuels, getTotals } from "./services";
+import StatsWidget from "./components/StatsWidget";
 
 type IProps = { path: string };
 interface IRefuelsResponse {
@@ -34,32 +35,25 @@ const VehicleStatsField: React.FC<IProps> = ({ path }) => {
       <div className="flex flex-col items-center sm:items-start col-span-10 sm:col-span-5 p-8  bg-[#181818]">
         <h2 className="text-3xl w-fit">Lifetime Stats</h2>
         <div className="flex flex-col w-full items-center sm:grid sm:grid-cols-2 md:grid-cols-3">
-          <div className="flex flex-col items-center sm:items-start">
-            <p className="font-bold text-4xl mb-0">{totals?.totalCapacity}</p>
-            <p>Volume (Liters)</p>
-          </div>
-          <div className="flex flex-col items-center sm:items-start">
-            <p className="font-bold text-4xl mb-0">
-              {currencyFormatter.format(totals?.totalCost)}
-            </p>
-            <p>Total Fuel Cost</p>
-          </div>
-          <div className="flex flex-col items-center sm:items-start">
-            <p className="font-bold text-4xl mb-0">
-              {refuels?.docs?.[0]?.mileage || "No Data"}
-            </p>
-            <p>Total Miles Driven</p>
-          </div>
-          <div className="flex flex-col items-center sm:items-start">
-            <p className="font-bold text-4xl mb-0">
-              {isNaN(
+          <StatsWidget label="Volume (Liters)" value={totals?.totalCapacity} />
+          <StatsWidget
+            label="Total Fuel Cost"
+            value={currencyFormatter.format(totals?.totalCost)}
+          />
+          <StatsWidget
+            label="Total Miles Driven"
+            value={refuels?.docs?.[0]?.mileage || "No Data"}
+          />
+          <StatsWidget
+            label="Miles Since Owned"
+            value={
+              isNaN(
                 refuels?.docs?.[0]?.mileage - firstRefuel?.docs?.[0]?.mileage
               )
                 ? "No Data"
-                : refuels?.docs?.[0]?.mileage - firstRefuel?.docs?.[0]?.mileage}
-            </p>
-            <p>Miles Since Owned</p>
-          </div>
+                : refuels?.docs?.[0]?.mileage - firstRefuel?.docs?.[0]?.mileage
+            }
+          />
         </div>
       </div>
 
