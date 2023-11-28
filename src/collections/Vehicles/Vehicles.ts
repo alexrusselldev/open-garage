@@ -25,6 +25,11 @@ const Vehicles: CollectionConfig = {
         placeholder: "Vehicle Nickname",
       },
     },
+    {
+      name: "image",
+      type: "upload",
+      relationTo: "media",
+    },
   ],
 };
 
