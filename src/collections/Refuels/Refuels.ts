@@ -66,6 +66,7 @@ const Refuels: CollectionConfig = {
         condition: isReadOnly,
       },
       hooks: {
+        beforeChange: [clearFieldBeforeChange("fullTitle")],
         afterRead: [vehicleDisplayAfterRead],
       },
     },
@@ -92,6 +93,7 @@ const Refuels: CollectionConfig = {
             condition: isReadOnly,
           },
           hooks: {
+            beforeChange: [clearFieldBeforeChange("mileageDisplay")],
             afterRead: [displayFieldAfterRead("mileage")],
           },
         },
@@ -112,6 +114,7 @@ const Refuels: CollectionConfig = {
             condition: isReadOnly,
           },
           hooks: {
+            beforeChange: [clearFieldBeforeChange("capacityDisplay")],
             afterRead: [displayFieldAfterRead("capacity")],
           },
         },
@@ -132,6 +135,7 @@ const Refuels: CollectionConfig = {
             condition: isReadOnly,
           },
           hooks: {
+            beforeChange: [clearFieldBeforeChange("costDisplay")],
             afterRead: [displayFieldAfterRead("cost")],
           },
         },
