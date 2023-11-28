@@ -57,13 +57,17 @@ const VehicleStatsField: React.FC<Props> = ({ path }) => {
           </div>
           <div className="flex flex-col items-center sm:items-start">
             <p className="font-bold text-4xl mb-0">
-              {refuels?.docs?.[0]?.mileage}
+              {refuels?.docs?.[0]?.mileage || "No Data"}
             </p>
             <p>Total Miles Driven</p>
           </div>
           <div className="flex flex-col items-center sm:items-start">
             <p className="font-bold text-4xl mb-0">
-              {refuels?.docs?.[0]?.mileage - firstRefuel?.docs?.[0]?.mileage}
+              {isNaN(
+                refuels?.docs?.[0]?.mileage - firstRefuel?.docs?.[0]?.mileage
+              )
+                ? "No Data"
+                : refuels?.docs?.[0]?.mileage - firstRefuel?.docs?.[0]?.mileage}
             </p>
             <p>Miles Since Owned</p>
           </div>
