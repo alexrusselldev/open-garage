@@ -18,7 +18,10 @@ const isNotReadOnly: Condition<any, any> = (data) => {
 
 const Refuels: CollectionConfig = {
   slug: "refuels",
-  admin: { useAsTitle: "fullTitle" },
+  admin: {
+    useAsTitle: "fullTitle",
+    defaultColumns: ["fullTitle", "vehicle", "mileage", "cost"],
+  },
   hooks: { beforeChange: [collectionBeforeChange] },
   fields: [
     // admin field for controlling write-once logic
