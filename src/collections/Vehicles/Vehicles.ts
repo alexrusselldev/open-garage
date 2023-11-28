@@ -1,9 +1,13 @@
 import { CollectionConfig } from "payload/types";
+import collectionBeforeChange from "./hooks/collectionBeforeChange";
 
 const Vehicles: CollectionConfig = {
   slug: "vehicles",
   admin: {
     useAsTitle: "nickname",
+  },
+  hooks: {
+    beforeChange: [collectionBeforeChange],
   },
   fields: [
     {
