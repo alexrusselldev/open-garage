@@ -14,6 +14,13 @@ const Vehicles: CollectionConfig = {
         placeholder: "Vehicle Registration",
       },
     },
+    {
+      name: "nickname",
+      type: "text",
+      admin: {
+        placeholder: "Vehicle Nickname",
+      },
+    },
   ],
 };
 
