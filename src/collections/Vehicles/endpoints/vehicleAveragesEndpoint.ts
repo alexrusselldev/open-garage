@@ -6,6 +6,9 @@ const vehicleAveragesEndpoint: Omit<Endpoint, "root"> = {
   handler: async (req, res, next) => {
     const mongoRes = await req.payload.db.collections["refuels"].aggregate([
       {
+        $match: { vehicle: req.params.id },
+      },
+      {
         $facet: {
           first: [{ $sort: { createdAt: 1 } }, { $limit: 1 }],
           last: [{ $sort: { createdAt: -1 } }, { $limit: 2 }],
