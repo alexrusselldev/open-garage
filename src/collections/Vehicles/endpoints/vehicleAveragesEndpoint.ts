@@ -6,7 +6,7 @@ const vehicleAveragesEndpoint: Omit<Endpoint, "root"> = {
   handler: async (req, res, next) => {
     const mongoRes = await req.payload.db.collections["refuels"].aggregate([
       {
-        $match: { vehicle: req.params.id },
+        $match: { $and: [{ vehicle: req.params.id }, { full: true }] },
       },
       {
         $facet: {
