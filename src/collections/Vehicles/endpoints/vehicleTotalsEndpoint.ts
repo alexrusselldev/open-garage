@@ -23,7 +23,6 @@ const vehicleTotalsEndpoint: Omit<Endpoint, "root"> = {
       res.status(200).send({ totalCost: 0, totalCapacity: 0 });
       return;
     }
-    console.log(mongoRes);
 
     const result = mongoRes[0];
 

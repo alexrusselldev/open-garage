@@ -50,7 +50,8 @@ const validateMileage: Validate = async (
   );
   const refuelRes = await refuelsQuery.json();
 
-  if (refuelRes.docs.length == 0 || refuelRes.docs == undefined) return true;
+  if (refuelRes?.docs?.length == undefined || refuelRes.docs.length == 0)
+    return true;
 
   const latestRefuel = refuelRes.docs[0];
 

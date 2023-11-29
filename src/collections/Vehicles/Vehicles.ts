@@ -2,6 +2,7 @@ import { CollectionConfig } from "payload/types";
 import collectionBeforeChange from "./hooks/collectionBeforeChange";
 import vehicleTotalsEndpoint from "./endpoints/vehicleTotalsEndpoint";
 import VehicleStatsField from "./fields/VehicleStatsField";
+import vehicleAveragesEndpoint from "./endpoints/vehicleAveragesEndpoint";
 
 const Vehicles: CollectionConfig = {
   slug: "vehicles",
@@ -58,7 +59,7 @@ const Vehicles: CollectionConfig = {
       ],
     },
   ],
-  endpoints: [vehicleTotalsEndpoint],
+  endpoints: [vehicleTotalsEndpoint, vehicleAveragesEndpoint],
 };
 
 export default Vehicles;
