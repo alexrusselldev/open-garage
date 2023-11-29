@@ -50,6 +50,11 @@ const calculateAverages = (data: IAveragesData): IAverages => {
   const betweenRefuelsMileage = data.last[0].mileage - data.last[1].mileage;
   const betweenRefuelsAverage =
     betweenRefuelsMileage / data.last[0].capacitySinceRefill;
+
+  return {
+    fromStart: lifetimeAverage,
+    betweenRefuels: betweenRefuelsAverage,
+  };
 };
 
 export {

@@ -18,8 +18,8 @@ interface IRefuelsResponse {
 }
 
 export interface IAverages {
-  fromStart: number;
-  betweenRefuels: number;
+  fromStart?: number;
+  betweenRefuels?: number;
 }
 
 const VehicleStatsField: React.FC<IProps> = ({ path }) => {
@@ -50,7 +50,7 @@ const VehicleStatsField: React.FC<IProps> = ({ path }) => {
   return (
     <div className="grid grid-cols-10 p-8 md:p-0 gap-8">
       <div className="flex flex-col items-center sm:items-start col-span-10 sm:col-span-5 p-8  bg-[#181818]">
-        <h2 className="text-3xl w-fit">Lifetime Stats</h2>
+        <h2 className="text-3xl w-fit">Statistics</h2>
         <div className="flex flex-col w-full items-center sm:grid sm:grid-cols-2 md:grid-cols-3">
           <StatsWidget label="Volume (Liters)" value={totals?.totalCapacity} />
           <StatsWidget
@@ -70,6 +70,14 @@ const VehicleStatsField: React.FC<IProps> = ({ path }) => {
                 ? "No Data"
                 : refuels?.docs?.[0]?.mileage - firstRefuel?.docs?.[0]?.mileage
             }
+          />
+          <StatsWidget
+            label="Lifetime Average MPG"
+            value={averagesData?.fromStart?.toFixed(2) || "No Data"}
+          />
+          <StatsWidget
+            label="Average MPG Last Fill"
+            value={averagesData?.betweenRefuels.toFixed(2) || "No Data"}
           />
         </div>
       </div>
