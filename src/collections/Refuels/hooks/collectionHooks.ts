@@ -20,6 +20,7 @@ const collectionBeforeChange: CollectionBeforeChangeHook = async ({
       ...data,
       isReadOnly: true,
       capacitySinceRefill: 0,
+      capacityFromStart: 0,
     };
   }
 
@@ -31,6 +32,7 @@ const collectionBeforeChange: CollectionBeforeChangeHook = async ({
     return {
       ...data,
       capacitySinceRefill: 0,
+      capacityFromStart: 0,
     };
   }
 
@@ -38,6 +40,7 @@ const collectionBeforeChange: CollectionBeforeChangeHook = async ({
     return {
       ...data,
       capacitySinceRefill: data.capacity,
+      capacityFromStart: data.capacity + lastDoc.capacityFromStart,
     };
   }
 
@@ -45,6 +48,7 @@ const collectionBeforeChange: CollectionBeforeChangeHook = async ({
     ...data,
     isReadOnly: true,
     capacitySinceRefill: data.capacity + lastDoc.capacitySinceRefill,
+    capacityFromStart: data.capacity + lastDoc.capacityFromStart,
   };
 };
 
