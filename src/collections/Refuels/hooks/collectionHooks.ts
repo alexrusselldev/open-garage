@@ -24,8 +24,6 @@ const collectionBeforeChange: CollectionBeforeChangeHook = async ({
     };
   }
 
-  console.log(lastDocRes.docs);
-
   const lastDoc = lastDocRes.docs[0];
 
   if (!lastDoc.full && lastDoc.capacitySinceRefill == 0) {
