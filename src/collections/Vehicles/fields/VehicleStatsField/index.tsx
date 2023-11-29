@@ -2,7 +2,13 @@ import { useDocumentInfo } from "payload/dist/admin/components/utilities/Documen
 import { Refuel } from "payload/generated-types";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { getFirstRefuel, getRefuels, getTotals } from "./services";
+import {
+  calculateAverages,
+  getAveragesData,
+  getFirstRefuel,
+  getRefuels,
+  getTotals,
+} from "./services";
 import StatsWidget from "./components/StatsWidget";
 import RefuelRow from "./components/RefuelRow";
 
@@ -10,10 +16,17 @@ type IProps = { path: string };
 interface IRefuelsResponse {
   docs: Refuel[];
 }
+
+export interface IAverages {
+  fromStart: number;
+  betweenRefuels: number;
+}
+
 const VehicleStatsField: React.FC<IProps> = ({ path }) => {
   const [totals, setTotals] = useState<Record<string, any>>();
   const [refuels, setRefuels] = useState<IRefuelsResponse>();
   const [firstRefuel, setFirstRefuel] = useState<IRefuelsResponse>();
+  const [averagesData, setAveragesData] = useState<IAverages>();
   const { id } = useDocumentInfo();
 
   const currencyFormatter = new Intl.NumberFormat("en-UK", {
@@ -26,6 +39,9 @@ const VehicleStatsField: React.FC<IProps> = ({ path }) => {
       setTotals(await getTotals(id));
       setRefuels(await getRefuels(id));
       setFirstRefuel(await getFirstRefuel(id));
+      const averagesRes = await getAveragesData(id);
+
+      setAveragesData(calculateAverages(averagesRes));
     };
 
     fetchData();
