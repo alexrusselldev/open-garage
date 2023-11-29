@@ -20,4 +20,12 @@ const getFirstRefuel = async (id) => {
   return await firstRefuel.json();
 };
 
-export { getTotals, getRefuels, getFirstRefuel };
+const getAveragesData = async (id) => {
+  const averagesData = await fetch(
+    `http://localhost:3000/api/vehicles/${id}/averages`
+  );
+
+  return await averagesData.json();
+};
+
+export { getTotals, getRefuels, getFirstRefuel, getAveragesData };
