@@ -54,6 +54,8 @@ export interface Refuel {
   id: string;
   isReadOnly?: boolean | null;
   fullTitle?: string | null;
+  capacityFromStart?: number | null;
+  capacitySinceRefill?: number | null;
   full?: boolean | null;
   fullDisplay?: boolean | null;
   vehicle?: (string | null) | Vehicle;

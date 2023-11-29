@@ -46,6 +46,22 @@ const Refuels: CollectionConfig = {
       },
     },
 
+    // admin fields for calculating averages
+    {
+      name: "capacityFromStart",
+      type: "number",
+      admin: {
+        hidden: true,
+      },
+    },
+    {
+      name: "capacitySinceRefill",
+      type: "number",
+      admin: {
+        hidden: true,
+      },
+    },
+
     // full tank field
     {
       name: "full",
